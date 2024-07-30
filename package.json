@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"graphql-faker schema.graphql\"",
     "build": "next build",
     "start": "next start",
-    "start-faker": "graphql-faker schema.graphql",
     "lint": "next lint"
   },
   "dependencies": {
@@ -19,6 +18,7 @@
     "styled-components": "6.1.12"
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.5"
   }

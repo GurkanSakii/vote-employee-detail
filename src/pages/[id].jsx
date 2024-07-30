@@ -9,10 +9,8 @@ export default function EmployeePage() {
 
   const { data, loading, error } = useQuery(EMPLOYEE_QUERY, {
     variables: { id },
-    fetchPolicy: 'cache',
     skip: !id,
   });
-
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
