@@ -5,9 +5,9 @@ const CardContainer = styled.li`
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 250px;
+  width: 350px;
   text-align: center;
-  padding: 16px;
+  padding: 32px;
   box-sizing: border-box;
   cursor: pointer;
 `;
