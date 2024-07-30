@@ -1,9 +1,6 @@
-import { useRouter } from "next/router";
-import VotingButton from "./VotingButton";
 import styled from "styled-components";
-import { logEvent } from "@/utils/eventLogger";
 
-const Card = styled.li`
+const CardContainer = styled.li`
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -30,23 +27,34 @@ const JobTitle = styled.p`
   text-overflow: ellipsis;
   height: 40px;
 `;
-const EmployeeCard = ({ employee }) => {
-  const router = useRouter();
 
-  const goDetailPage = (employee) => {
-    logEvent("Navigate to Detail Page", { employeeId: employee.id });
-    router.push(`/${employee.id}`);
-  };
+const VoteCount = styled.p`
+  height: 24px;
+  margin: 8px 0;
+`;
 
-  return (
-    <Card onClick={() => goDetailPage(employee)}>
-      <Name>
-        {employee.firstName} {employee.lastName}
-      </Name>
-      <JobTitle>{employee.jobTitle}</JobTitle>
-      <VotingButton employeeId={employee.id} />
-    </Card>
-  );
-};
+const VotingButton = styled.button`
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
+const EmployeeCard = ({ employee, goDetailPage, onVote }) => (
+  <CardContainer onClick={() => goDetailPage(employee)}>
+    <Name>
+      {employee.firstName} {employee.lastName}
+    </Name>
+    <JobTitle>{employee.jobTitle}</JobTitle>
+    <VoteCount>{employee.votes ? `Votes: ${employee.votes || 0}` : ""}</VoteCount>
+    <VotingButton onClick={(e) => onVote(e, employee)}>Vote</VotingButton>
+  </CardContainer>
+);
 
 export default EmployeeCard;
