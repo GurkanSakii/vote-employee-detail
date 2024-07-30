@@ -2,25 +2,28 @@ import { gql } from "@apollo/client";
 
 const GET_EMPLOYEES = gql`
   query {
-    employees {
-      id
-      firstName
-      lastName
-      jobTitle
+    users {
+      data {
+        id
+        name
+        email
+        username
+        phone
+        website
+      }
     }
   }
 `;
 
 const EMPLOYEE_QUERY = gql`
-  query GetEmployee($id: ID!) {
-    employee(id: $id) {
+  query ($id: ID!) {
+    user(id: $id) {
       id
-      firstName
-      lastName
-      jobTitle
+      name
       email
+      username
       phone
-      address
+      website
     }
   }
 `;

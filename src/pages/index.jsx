@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { logEvent } from "@/utils/eventLogger";
 import styled from "styled-components";
 import EmployeeCard from "@/components/EmployeeCard";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const CardList = styled.ul`
   display: flex;
@@ -16,18 +17,18 @@ const CardList = styled.ul`
   list-style-type: none;
 `;
 
-const Home = () => {
+const List = () => {
   const { loading, error, data } = useQuery(GET_EMPLOYEES);
   const [employees, setEmployees] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
-    if (data && data.employees) {
-      setEmployees(data.employees);
+    if (data && data.users.data) {
+      setEmployees(data.users.data);
     }
   }, [data]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingScreen />;
   if (error) return <p>Error: {error.message}</p>;
 
   const goDetailPage = (employee) => {
@@ -44,7 +45,7 @@ const Home = () => {
       return updatedEmployees.sort((a, b) => (b.votes || 0) - (a.votes || 0));
     });
 
-    logEvent("Voted to ", { employeeName: voteEmployee.firstName + " " + voteEmployee.lastName });
+    logEvent("Voted to ", { employeeName: voteEmployee.name });
   };
 
   return (
@@ -56,4 +57,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default List;

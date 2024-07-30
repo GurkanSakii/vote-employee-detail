@@ -25,7 +25,7 @@ const Header = styled.h1`
 const Detail = styled.p`
   & > strong {
     display: inline-block;
-    width: 75px;
+    width: 100px;
     font-weight: bold;
   }
 `;
@@ -35,10 +35,10 @@ const EmployeeDetail = ({ employee }) => {
     <CenteredContainer>
       <DetailContainer>
         <Header>
-          {employee.firstName} {employee.lastName}
+          {employee.name}
         </Header>
         <Detail>
-          <strong>Position:</strong> {employee.jobTitle}
+          <strong>Username:</strong> {employee.username}
         </Detail>
         <Detail>
           <strong>Email:</strong> {employee.email}
@@ -47,7 +47,7 @@ const EmployeeDetail = ({ employee }) => {
           <strong>Phone:</strong> {employee.phone}
         </Detail>
         <Detail>
-          <strong>Address:</strong> {employee.address}
+          <strong>Website:</strong> {employee.website}
         </Detail>
       </DetailContainer>
     </CenteredContainer>

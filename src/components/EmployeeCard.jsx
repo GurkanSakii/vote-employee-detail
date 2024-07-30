@@ -5,7 +5,7 @@ const CardContainer = styled.li`
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 200px;
+  width: 250px;
   text-align: center;
   padding: 16px;
   box-sizing: border-box;
@@ -48,10 +48,8 @@ const VotingButton = styled.button`
 
 const EmployeeCard = ({ employee, goDetailPage, onVote }) => (
   <CardContainer onClick={() => goDetailPage(employee)}>
-    <Name>
-      {employee.firstName} {employee.lastName}
-    </Name>
-    <JobTitle>{employee.jobTitle}</JobTitle>
+    <Name>{employee.name}</Name>
+    <JobTitle>{employee.username}</JobTitle>
     <VoteCount>{employee.votes ? `Votes: ${employee.votes || 0}` : ""}</VoteCount>
     <VotingButton onClick={(e) => onVote(e, employee)}>Vote</VotingButton>
   </CardContainer>

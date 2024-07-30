@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import EmployeeDetail from "@/components/EmployeeDetail";
 import { EMPLOYEE_QUERY } from "@/graphql/queries";
+import LoadingScreen from "@/components/LoadingScreen";
 
-export default function EmployeePage() {
+const EmployeePage = () => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -12,8 +13,9 @@ export default function EmployeePage() {
     skip: !id,
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingScreen />;
   if (error) return <p>Error: {error.message}</p>;
 
-  return data && <EmployeeDetail employee={data.employee} />;
-}
+  return data && <EmployeeDetail employee={data.user} />;
+};
+export default EmployeePage;
